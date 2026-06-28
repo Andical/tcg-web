@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ravens of War TCG - Fantasy Dungeon Studio</title>
+    <meta name="description" content="Un nuevo mundo de cartas Online. Lidera ejércitos en tierras devastadas.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;700;900&family=Inter:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-inner">
+            <a href="#" class="logo">
+                <div class="logo-diamond">
+                    <i data-lucide="castle"></i>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">FANTASY DUNGEON</span>
+                    <span class="logo-sub">STUDIO</span>
+                </div>
+            </a>
+
+            <div class="nav-menu">
+                <a href="#" class="nav-link" id="gallery-btn" data-i18n="nav.gallery">Galería</a>
+
+                <a href="#info" class="nav-link" data-i18n="nav.info">Información del Juego</a>
+                <a href="#community" class="nav-link" data-i18n="nav.community">Comunidad</a>
+                <a href="#creator" class="nav-link" data-i18n="nav.creator">El Creador</a>
+                <a href="https://discord.gg/ubbDskXCSJ" class="nav-link nav-discord">Discord</a>
+                <button class="lang-btn" id="lang-toggle">
+                    <i data-lucide="globe"></i>
+                    <span id="lang-text">ES</span>
+                </button>
+            </div>
+
+            <button class="menu-toggle" id="menu-toggle">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </nav>
+    <!-- ========== GALLERY MODAL ========== -->
+    <div class="gallery-modal" id="gallery-modal">
+        <div class="gallery-overlay"></div>
+        <div class="gallery-container">
+            <button class="gallery-close" id="gallery-close">
+                <i data-lucide="x"></i>
+            </button>
+            <button class="gallery-nav gallery-prev" id="gallery-prev">
+                <i data-lucide="chevron-left"></i>
+            </button>
+            <div class="gallery-content">
+                <img class="gallery-image" id="gallery-image" src="" alt="Gallery">
+                <div class="gallery-counter" id="gallery-counter">1 / 10</div>
+            </div>
+            <button class="gallery-nav gallery-next" id="gallery-next">
+                <i data-lucide="chevron-right"></i>
+            </button>
+            <div class="gallery-thumbnails" id="gallery-thumbnails"></div>
+        </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div class="mobile-nav" id="mobile-nav">
+        <button class="mobile-close" id="mobile-close">
+            <i data-lucide="x"></i>
+        </button>
+        <a href="#info" class="mobile-link" data-i18n="nav.info">Información del Juego</a>
+        <a href="#community" class="mobile-link" data-i18n="nav.community">Comunidad</a>
+        <a href="#creator" class="mobile-link" data-i18n="nav.creator">El Creador</a>
+        <a href="#" class="mobile-link" id="gallery-btn-mobile" data-i18n="nav.gallery">Galería</a>
+        <a href="https://discord.gg/ubbDskXCSJ" class="mobile-link">Discord</a>
+    </div>
+
+
+
+    <!-- ========== HERO SECTION ========== -->
+    <section class="hero">
+        <div class="hero-bg">
+            <img src="assets/2.png" alt="">
+        </div>
+
+        <div class="hero-wrapper">
+            <header class="title-section">
+                <h1 class="main-title">
+                    <span class="white">RAVENS</span>
+                    <span class="red">OF WAR</span>
+                </h1>
+            </header>
+
+            <section class="trailer-section">
+                <div class="trailer-box">
+                    <div class="corner corner-tl"></div>
+                    <div class="corner corner-tr"></div>
+                    <div class="corner corner-bl"></div>
+                    <div class="corner corner-br"></div>
+                    <span class="label-rec">REC •</span>
+                    <span class="label-official" data-i18n="hero.trailer">OFFICIAL TRAILER</span>
+                    <button class="play-btn">
+                        <i data-lucide="play"></i>
+                    </button>
+                </div>
+            </section>
+
+            <section class="content-grid">
+                <div class="form-card">
+                    <div class="form-header">
+                        <i data-lucide="swords"></i>
+                        <span>WAR ROOM</span>
+                    </div>
+                    <form class="form-body" id="auth-form" onsubmit="event.preventDefault();enviarRegistro();">
+                        <div class="field">
+                            <label><i data-lucide="mail"></i> <span data-i18n="form.email">Correo
+                                    Electrónico</span></label>
+                            <input type="email" id="reg-email" placeholder="tu@email.com" required>
+                        </div>
+                        <div class="field">
+                            <label><i data-lucide="user"></i> <span data-i18n="form.username">Nombre de
+                                    Usuario</span></label>
+                            <input type="text" id="reg-username" data-i18n-placeholder="form.usernamePlaceholder"
+                                placeholder="Tu nombre en el juego" required>
+                        </div>
+                        <div class="field">
+                            <label><i data-lucide="lock"></i> <span data-i18n="form.password">Contraseña</span></label>
+                            <input type="password" id="reg-password" placeholder="••••••••" minlength="6" required>
+                        </div>
+                        <div class="field">
+                            <label><i data-lucide="lock"></i> <span data-i18n="form.confirm_password">Confirmar
+                                    Contraseña</span></label>
+                            <input type="password" id="reg-confirm-password" placeholder="••••••••" minlength="6"
+                                required>
+                        </div>
+                        <button type="submit" class="submit-btn" data-i18n="form.submit">Únete a la Guerra</button>
+                    </form>
+                    <div class="form-msg" id="form-msg"></div>
+                </div>
+
+                <div class="info-col">
+                    <div class="desc-box">
+                        <p data-i18n="hero.description">Un nuevo mundo de cartas Online abre sus puertas. Lidera
+                            ejércitos en tierras devastadas. Elige tu color: Blanco, Negro, Verde, Azul, Rojo, Etéreo o
+                            combínalos a tu gusto.</p>
+                    </div>
+                    <div class="platforms">
+                        <a href="#" class="plat-btn plat-steam">
+                            <img src="assets/steam.svg" alt="Steam" class="plat-icon">
+                            <span class="plat-name">Steam</span>
+                            <span class="plat-status" data-i18n="hero.coming">Próximamente</span>
+                        </a>
+                        <a href="https://andical.itch.io/ravens" target="_blank" class="plat-btn plat-itch">
+                            <img src="assets/itch-icon.svg" alt="Itch.io" class="plat-icon">
+                            <span class="plat-name">Itch.io</span>
+                            <span class="plat-status">Web / PC</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="stats-bar">
+                <div class="stat">
+                    <span class="stat-val">ONLINE</span>
+                    <span class="stat-lbl">PVP & PVE</span>
+                </div>
+                <div class="stat-sep"></div>
+                <div class="stat">
+                    <span class="stat-val">6</span>
+                    <span class="stat-lbl" data-i18n="stats.factions">Facciones</span>
+                </div>
+                <div class="stat-sep"></div>
+                <div class="stat">
+                    <span class="stat-val">600+</span>
+                    <span class="stat-lbl" data-i18n="stats.cards">Cartas</span>
+                </div>
+                <div class="stat-sep"></div>
+                <div class="stat">
+                    <span class="stat-val">F2P</span>
+                    <span class="stat-lbl" data-i18n="stats.fair">Juego Justo</span>
+                </div>
+            </footer>
+        </div>
+    </section>
+
+    <!-- ========== GAME INFO SECTION ========== -->
+    <section class="section section--dark" id="info">
+        <div class="section-inner">
+            <h2 class="section-title" data-i18n="nav.info">Información del Juego</h2>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i data-lucide="hammer"></i>
+                    </div>
+                    <h3 class="feature-title" data-i18n="info.forge.title">FORJA Y COLECCIONA</h3>
+                    <p class="feature-desc" data-i18n="info.forge.desc">Consigue cartas jugando. Farmea recursos en
+                        batalla, craftea criaturas legendarias, hechizos poderosos y completa tu colección sin barreras
+                        de pago.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i data-lucide="swords"></i>
+                    </div>
+                    <h3 class="feature-title" data-i18n="info.modes.title">MODOS DE GUERRA</h3>
+                    <p class="feature-desc" data-i18n="info.modes.desc">Domina el PvP Clasificatorio, sobrevive a
+                        legendarios encuentros PvE y descubre los secretos del mundo en el Modo Historia.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i data-lucide="palette"></i>
+                    </div>
+                    <h3 class="feature-title" data-i18n="info.custom.title">PERSONALIZACIÓN TOTAL</h3>
+                    <p class="feature-desc" data-i18n="info.custom.desc">Tu estilo, tu reino. Personaliza dorsos de
+                        cartas, avatares y decora tu campo de batalla con trofeos de guerra.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== COMMUNITY SECTION ========== -->
+    <section class="section section--pattern" id="community">
+        <div class="section-inner">
+            <h2 class="section-title" data-i18n="nav.community">Comunidad</h2>
+
+            <div class="community-grid">
+                <a href="https://discord.gg/ubbDskXCSJ" target="_blank" class="community-card community-card--discord">
+                    <div class="community-icon">
+                        <i data-lucide="message-circle"></i>
+                    </div>
+                    <h3 class="community-name">DISCORD</h3>
+                    <p class="community-desc" data-i18n="community.discord">Únete al consejo. Códigos gratis semanales,
+                        eventos exclusivos y noticias del frente.</p>
+                </a>
+
+                <a href="#" target="_blank" class="community-card community-card--instagram">
+                    <div class="community-icon">
+                        <i data-lucide="instagram"></i>
+                    </div>
+                    <h3 class="community-name">INSTAGRAM</h3>
+                    <p class="community-desc" data-i18n="community.instagram">El arte de la guerra. Revelación de nuevas
+                        cartas, novedades y diseños visuales.</p>
+                </a>
+
+                <a href="#" target="_blank" class="community-card community-card--youtube">
+                    <div class="community-icon">
+                        <i data-lucide="youtube"></i>
+                    </div>
+                    <h3 class="community-name">YOUTUBE</h3>
+                    <p class="community-desc" data-i18n="community.youtube">Archivos visuales. Devlogs de desarrollo,
+                        tutoriales de estrategia y trailers cinemáticos.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CREATOR SECTION ========== -->
+    <section class="section section--dark" id="creator">
+        <div class="section-inner">
+            <h2 class="section-title" data-i18n="nav.creator">El Creador</h2>
+
+            <div class="creator-card">
+                <div class="creator-avatar">
+                    <div class="creator-avatar-inner">
+                        <img src="assets/avatar.png" alt="Uromir" class="creator-avatar-img">
+                    </div>
+                    <span class="creator-badge">Uromir</span>
+                </div>
+                <div class="creator-info">
+                    <h3 class="creator-name">ÁNGEL JIMÉNEZ "UROMIR"</h3>
+                    <span class="creator-location">
+                        <i data-lucide="map-pin"></i>
+                        <span data-i18n="creator.location">ESPAÑA</span>
+                    </span>
+                    <span class="creator-role" data-i18n="creator.role">EL FORJADOR</span>
+                    <p class="creator-quote" data-i18n="creator.quote">"Soy un verdadero amante de los juegos de cartas.
+                        He pasado media vida recorriendo los planos de Magic y estudiando cada estrategia existente en
+                        el género. Pero siempre sentí que faltaba algo... una oscuridad más profunda, un desafío mayor.
+                        Por eso he creado Ravens of War. He volcado toda mi experiencia para forjar un juego único, sin
+                        piedad, diseñado por y para jugadores que buscan la batalla definitiva. Podéis encontrarme en el
+                        juego y en Discord bajo el nombre de Uromir."</p>
+                </div>
+                <div class="creator-showcase">
+                    <img src="assets/collection.PNG" alt="Collection" class="creator-showcase-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-logo">
+                <span class="footer-brand">FANTASY DUNGEON STUDIO</span>
+                <span class="footer-copy">© 2025 Ravens of War. All rights reserved.</span>
+            </div>
+            <div class="footer-links">
+                <a href="https://discord.gg/ubbDskXCSJ" target="_blank">
+                    <i data-lucide="message-circle"></i>
+                </a>
+                <a href="#" target="_blank">
+                    <i data-lucide="instagram"></i>
+                </a>
+                <a href="#" target="_blank">
+                    <i data-lucide="youtube"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ========== TRANSLATIONS ==========
+        const translations = {
+            es: {
+                'nav.info': 'Información del Juego',
+                'nav.community': 'Comunidad',
+                'nav.creator': 'El Creador',
+                'nav.gallery': 'Galería',
+                'hero.trailer': 'TRAILER OFICIAL',
+                'hero.description': 'Un nuevo mundo de cartas Online abre sus puertas. Lidera ejércitos en tierras devastadas. Elige tu color: Blanco, Negro, Verde, Azul, Rojo, Etéreo o combínalos a tu gusto.',
+                'hero.coming': 'Próximamente',
+                'form.email': 'Correo Electrónico',
+                'form.username': 'Nombre de Usuario',
+                'form.usernamePlaceholder': 'Tu nombre en el juego',
+                'form.password': 'Contraseña',
+                'form.confirm_password': 'Confirmar Contraseña',
+                'form.confirm_passwordPlaceholder': '••••••••',
+                'form.submit': 'Únete a la Guerra',
+                'stats.factions': 'Facciones',
+                'stats.cards': 'Cartas',
+                'stats.fair': 'Juego Justo',
+                'info.forge.title': 'FORJA Y COLECCIONA',
+                'info.forge.desc': 'Consigue cartas jugando. Farmea recursos en batalla, craftea criaturas legendarias, hechizos poderosos y completa tu colección sin barreras de pago.',
+                'info.modes.title': 'MODOS DE GUERRA',
+                'info.modes.desc': 'Domina el PvP Clasificatorio, sobrevive a legendarios encuentros PvE y descubre los secretos del mundo en el Modo Historia.',
+                'info.custom.title': 'PERSONALIZACIÓN TOTAL',
+                'info.custom.desc': 'Tu estilo, tu reino. Personaliza dorsos de cartas, avatares y decora tu campo de batalla con trofeos de guerra.',
+                'community.discord': 'Únete al consejo. Códigos gratis semanales, eventos exclusivos y noticias del frente.',
+                'community.instagram': 'El arte de la guerra. Revelación de nuevas cartas, novedades y diseños visuales.',
+                'community.youtube': 'Archivos visuales. Devlogs de desarrollo, tutoriales de estrategia y trailers cinemáticos.',
+                'creator.location': 'ESPAÑA',
+                'creator.role': 'EL FORJADOR',
+                'creator.quote': '"Soy un verdadero amante de los juegos de cartas. He pasado media vida recorriendo los planos de Magic y estudiando cada estrategia existente en el género. Pero siempre sentí que faltaba algo... una oscuridad más profunda, un desafío mayor. Por eso he creado Ravens of War. He volcado toda mi experiencia para forjar un juego único, sin piedad, diseñado por y para jugadores que buscan la batalla definitiva. Podéis encontrarme en el juego y en Discord bajo el nombre de Uromir."'
+            },
+            en: {
+                'nav.info': 'Game Information',
+                'nav.community': 'Community',
+                'nav.creator': 'The Creator',
+                'nav.gallery': 'Gallery',
+                'hero.trailer': 'OFFICIAL TRAILER',
+                'hero.description': 'A new world of Online cards opens its doors. Lead armies in devastated lands. Choose your color: White, Black, Green, Blue, Red, Ethereal or combine them to your liking.',
+                'hero.coming': 'Coming Soon',
+                'form.email': 'Email',
+                'form.username': 'Username',
+                'form.usernamePlaceholder': 'Your in-game name',
+                'form.password': 'Password',
+                'form.confirm_password': 'Confirm Password',
+                'form.confirm_passwordPlaceholder': '••••••••',
+                'form.submit': 'Join the War',
+                'stats.factions': 'Factions',
+                'stats.cards': 'Cards',
+                'stats.fair': 'Fair Play',
+                'info.forge.title': 'FORGE & COLLECT',
+                'info.forge.desc': 'Get cards by playing. Farm resources in battle, craft legendary creatures, powerful spells and complete your collection without pay barriers.',
+                'info.modes.title': 'WAR MODES',
+                'info.modes.desc': 'Master Ranked PvP, survive legendary PvE encounters and discover the secrets of the world in Story Mode.',
+                'info.custom.title': 'TOTAL CUSTOMIZATION',
+                'info.custom.desc': 'Your style, your kingdom. Customize card backs, avatars and decorate your battlefield with war trophies.',
+                'community.discord': 'Join the council. Weekly free codes, exclusive events and news from the front.',
+                'community.instagram': 'The art of war. New card reveals, updates and visual designs.',
+                'community.youtube': 'Visual archives. Development devlogs, strategy tutorials and cinematic trailers.',
+                'creator.location': 'SPAIN',
+                'creator.role': 'THE FORGER',
+                'creator.quote': '"I am a true card game lover. I have spent half my life traversing the planes of Magic and studying every existing strategy in the genre. But I always felt something was missing... a deeper darkness, a greater challenge. That\'s why I created Ravens of War. I have poured all my experience into forging a unique, ruthless game, designed by and for players seeking the ultimate battle. You can find me in the game and on Discord under the name Uromir."'
+            }
+        };
+
+        let currentLang = 'es';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang;
+            document.getElementById('lang-text').textContent = lang.toUpperCase();
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (translations[lang][key]) {
+                    el.placeholder = translations[lang][key];
+                }
+            });
+
+            localStorage.setItem('lang', lang);
+        }
+
+        // ========== INIT ==========
+        lucide.createIcons();
+
+        // Load saved language
+        const savedLang = localStorage.getItem('lang');
+        if (savedLang) {
+            setLanguage(savedLang);
+        }
+
+        // Language toggle
+        document.getElementById('lang-toggle').addEventListener('click', () => {
+            setLanguage(currentLang === 'es' ? 'en' : 'es');
+        });
+
+        // Mobile menu
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileNav = document.getElementById('mobile-nav');
+        const mobileClose = document.getElementById('mobile-close');
+
+        menuToggle?.addEventListener('click', () => mobileNav.classList.add('open'));
+        mobileClose?.addEventListener('click', () => mobileNav.classList.remove('open'));
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => mobileNav.classList.remove('open'));
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Form submission - REAL REGISTRATION
+        const API_SERVER = 'https://portal-deeper-winning-biz.trycloudflare.com';
+        const DEFAULT_AVATAR = 'assets/avatars/male/human/7.jpg';
+        const DEFAULT_CARDBACK = 'assets/card_backs/default.jpeg';
+
+        async function enviarRegistro() {
+            const msg = document.getElementById('form-msg');
+            const email = document.getElementById('reg-email').value.trim();
+            const username = document.getElementById('reg-username').value.trim();
+            const password = document.getElementById('reg-password').value;
+            const confirmPassword = document.getElementById('reg-confirm-password').value;
+
+            // Validation
+            if (!email || !username || !password || !confirmPassword) {
+                msg.textContent = currentLang === 'es' ? 'Por favor completa todos los campos' : 'Please fill all fields';
+                msg.style.color = '#ff6b6b';
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                msg.textContent = currentLang === 'es' ? 'Las contraseñas no coinciden' : 'Passwords do not match';
+                msg.style.color = '#ff6b6b';
+                return;
+            }
+
+            if (username.length < 3 || username.length > 16) {
+                msg.textContent = currentLang === 'es' ? 'El nombre debe tener entre 3 y 16 caracteres' : 'Username must be 3-16 characters';
+                msg.style.color = '#ff6b6b';
+                return;
+            }
+
+            if (!/^[a-zA-Z]+$/.test(username)) {
+                msg.textContent = currentLang === 'es' ? 'El nombre solo puede contener letras' : 'Username can only contain letters';
+                msg.style.color = '#ff6b6b';
+                return;
+            }
+
+            if (password.length < 6) {
+                msg.textContent = currentLang === 'es' ? 'La contraseña debe tener al menos 6 caracteres' : 'Password must be at least 6 characters';
+                msg.style.color = '#ff6b6b';
+                return;
+            }
+
+            msg.textContent = currentLang === 'es' ? 'Registrando...' : 'Registering...';
+            msg.style.color = 'var(--gray-400)';
+
+            try {
+                // First get server version
+                const infoRes = await fetch(`${API_SERVER}/api/server-info`);
+                const infoData = await infoRes.json();
+                const clientVersion = infoData.client_version || '0.0.7';
+
+                // Capitalize username
+                const capitalizedUsername = username.charAt(0).toUpperCase() + username.slice(1).toLowerCase();
+
+                // Send registration request
+                const response = await fetch(`${API_SERVER}/api/users`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        username: capitalizedUsername,
+                        email: email,
+                        password: password,
+                        avatar: DEFAULT_AVATAR,
+                        cardback: DEFAULT_CARDBACK,
+                        client_version: clientVersion
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.code === 'SUCCESS') {
+                    msg.textContent = currentLang === 'es' ? '¡Registro exitoso! Ya puedes iniciar sesión en el juego.' : 'Registration successful! You can now log in to the game.';
+                    msg.style.color = '#4ade80';
+                    // Clear form
+                    document.getElementById('reg-email').value = '';
+                    document.getElementById('reg-username').value = '';
+                    document.getElementById('reg-password').value = '';
+                } else {
+                    // Handle specific error codes
+                    const errorMessages = {
+                        'USER_EXISTS': currentLang === 'es' ? 'El usuario o email ya existe' : 'Username or email already exists',
+                        'MISSING_FIELDS': currentLang === 'es' ? 'Faltan campos requeridos' : 'Missing required fields',
+                        'CLIENT_VERSION_INVALID': currentLang === 'es' ? 'Versión no válida' : 'Invalid version',
+                        'RATE_LIMIT_IP': currentLang === 'es' ? 'Demasiados intentos, espera un minuto' : 'Too many attempts, wait a minute',
+                        'RATE_LIMIT_EMAIL': currentLang === 'es' ? 'Demasiados intentos para este email' : 'Too many attempts for this email'
+                    };
+                    msg.textContent = errorMessages[data.code] || data.message || (currentLang === 'es' ? 'Error en el registro' : 'Registration error');
+                    msg.style.color = '#ff6b6b';
+                }
+            } catch (error) {
+                console.error('Registration error:', error);
+                msg.textContent = currentLang === 'es' ? 'Error de conexión con el servidor' : 'Server connection error';
+                msg.style.color = '#ff6b6b';
+            }
+        }
+
+        // ========== GALLERY ==========
+        let galleryImages = [];
+        let currentImageIndex = 0;
+        let galleryLoaded = false;
+        const galleryModal = document.getElementById('gallery-modal');
+        const galleryImage = document.getElementById('gallery-image');
+        const galleryCounter = document.getElementById('gallery-counter');
+        const galleryThumbnails = document.getElementById('gallery-thumbnails');
+
+        // Dynamically load images from gallery.json config
+        async function loadGalleryImages() {
+            if (galleryLoaded) return;
+            try {
+                const response = await fetch('assets/gallery/gallery.json');
+                const data = await response.json();
+                galleryImages = data.images.map(img => `assets/gallery/${img}`);
+                galleryLoaded = true;
+            } catch (e) {
+                console.error('Error loading gallery:', e);
+                galleryImages = [];
+            }
+        }
+
+        async function openGallery() {
+            await loadGalleryImages();
+            if (galleryImages.length === 0) {
+                alert(currentLang === 'es' ? 'No hay imágenes en la galería' : 'No images in gallery');
+                return;
+            }
+            galleryModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            showImage(0);
+            createThumbnails();
+            lucide.createIcons();
+        }
+
+        function closeGallery() {
+            galleryModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function showImage(index) {
+            if (galleryImages.length === 0) return;
+            if (index < 0) index = galleryImages.length - 1;
+            if (index >= galleryImages.length) index = 0;
+            currentImageIndex = index;
+
+            galleryImage.src = galleryImages[index];
+            galleryCounter.textContent = `${index + 1} / ${galleryImages.length}`;
+
+            // Update thumbnail active state
+            document.querySelectorAll('.gallery-thumb').forEach((thumb, i) => {
+                thumb.classList.toggle('active', i === index);
+            });
+        }
+
+        function createThumbnails() {
+            galleryThumbnails.innerHTML = '';
+            galleryImages.forEach((src, i) => {
+                const thumb = document.createElement('img');
+                thumb.src = src;
+                thumb.className = 'gallery-thumb' + (i === 0 ? ' active' : '');
+                thumb.addEventListener('click', () => showImage(i));
+                galleryThumbnails.appendChild(thumb);
+            });
+        }
+
+        function nextImage() { showImage(currentImageIndex + 1); }
+        function prevImage() { showImage(currentImageIndex - 1); }
+
+        // Event listeners
+        document.getElementById('gallery-btn')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            openGallery();
+        });
+
+        document.getElementById('gallery-btn-mobile')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            mobileNav.classList.remove('open');
+            openGallery();
+        });
+
+        document.getElementById('gallery-close')?.addEventListener('click', closeGallery);
+        document.getElementById('gallery-next')?.addEventListener('click', nextImage);
+        document.getElementById('gallery-prev')?.addEventListener('click', prevImage);
+        document.querySelector('.gallery-overlay')?.addEventListener('click', closeGallery);
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!galleryModal.classList.contains('active')) return;
+            if (e.key === 'Escape') closeGallery();
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') prevImage();
+        });
+
+        // Touch swipe support
+        let touchStartX = 0;
+        galleryModal.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+        });
+        galleryModal.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].clientX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) nextImage();
+                else prevImage();
+            }
+        });
+    </script>
+</body>
+
+</html>

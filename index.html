@@ -63,6 +63,17 @@
 </head>
 
 <body>
+    <!-- ========== PRELOADER ========== -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-content">
+            <div class="preloader-seal">
+                <i data-lucide="castle"></i>
+            </div>
+            <div class="preloader-bar">
+                <div class="preloader-progress"></div>
+            </div>
+        </div>
+    </div>
     <!-- ========== NAVBAR ========== -->
     <nav class="navbar" id="navbar" aria-label="Navegación principal">
         <div class="navbar-inner">
@@ -1019,6 +1030,16 @@
 
         // Fetch on initial load
         fetchLiveNews();
+
+        // ========== PRELOADER HIDE ==========
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            if (preloader) {
+                preloader.classList.add('fade-out');
+                // Remove from DOM to save resources after transition
+                setTimeout(() => preloader.remove(), 600);
+            }
+        });
     </script>
 </body>
 
